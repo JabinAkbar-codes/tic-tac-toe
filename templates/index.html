@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="chalk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Classic Tic Tac Toe with a two-player mode and an unbeatable computer opponent.">
+  <meta name="theme-color" content="#1e2b27">
+  <title>Tic Tac Toe</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭕</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat+Brush&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="app">
+
+    <header class="bar">
+      <h1>Tic Tac Toe</h1>
+      <div class="tools">
+        <button class="icon-btn" id="settingsBtn" type="button" aria-expanded="false" aria-controls="settings" aria-label="Settings" title="Settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10" fill="none"/><circle cx="16" cy="7" r="2.2" fill="none"/><circle cx="8" cy="17" r="2.2" fill="none"/></svg>
+        </button>
+        <button class="icon-btn" id="soundBtn" type="button" aria-pressed="true" aria-label="Sound on" title="Sound on/off">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="waves" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/><path class="slash" d="M17 9l5 6M22 9l-5 6"/></svg>
+        </button>
+        <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch to paper theme" title="Theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9c-5 1-10-4-9-9z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="backdrop" id="backdrop" hidden></div>
+
+    <main class="main">
+      <p class="status" id="status" role="status" aria-live="polite">Your turn</p>
+      <div class="stage">
+        <div class="board" id="board" role="grid" aria-label="Tic Tac Toe board"></div>
+      </div>
+    </main>
+
+    <aside class="side">
+      <div class="scores" aria-label="Scoreboard">
+        <div class="score" id="scoreX"><span class="who" id="nameX">You (X)</span><b id="winsX">0</b></div>
+        <div class="score" id="scoreD"><span class="who">Draws</span><b id="winsD">0</b></div>
+        <div class="score" id="scoreO"><span class="who" id="nameO">CPU (O)</span><b id="winsO">0</b></div>
+      </div>
+
+      <section class="settings" id="settings" aria-label="Game settings">
+        <div class="field">
+          <span class="label">Mode</span>
+          <div class="seg" role="radiogroup" aria-label="Game mode" id="modeGroup">
+            <button type="button" role="radio" aria-checked="true"  data-mode="cpu">vs Computer</button>
+            <button type="button" role="radio" aria-checked="false" data-mode="pvp">2 Players</button>
+          </div>
+        </div>
+        <div class="cpu-options" id="cpuOptions">
+          <div class="field">
+            <span class="label">Difficulty</span>
+            <div class="seg" role="radiogroup" aria-label="Difficulty" id="levelGroup">
+              <button type="button" role="radio" aria-checked="false" data-level="easy">Easy</button>
+              <button type="button" role="radio" aria-checked="false" data-level="medium">Medium</button>
+              <button type="button" role="radio" aria-checked="true"  data-level="hard">Hard</button>
+            </div>
+          </div>
+          <div class="field">
+            <span class="label">You play</span>
+            <div class="seg" role="radiogroup" aria-label="Play as" id="sideGroup">
+              <button type="button" role="radio" aria-checked="true"  data-side="X">X (first)</button>
+              <button type="button" role="radio" aria-checked="false" data-side="O">O</button>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn small ghost" id="resetBtn">Reset scores</button>
+      </section>
+
+      <div class="actions">
+        <button type="button" class="btn" id="undoBtn">Undo</button>
+        <button type="button" class="btn primary" id="newBtn">New round</button>
+      </div>
+      <p class="hint">Keys <kbd>1</kbd>–<kbd>9</kbd> place a mark · <kbd>N</kbd> new round · <kbd>U</kbd> undo</p>
+    </aside>
+
+  </div>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
